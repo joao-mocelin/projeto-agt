@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 int main ()
@@ -7,8 +6,9 @@ int main ()
     int opcao, opcao2, mensalidade, periodo;
     char adesao;
     char cliente[100], categoria[100], pagamento[100], horario[100];
-    printf("\n Qual o nome do cliente?\n");
-    scanf("%99[^\n]", cliente);
+    char data[100], meta[100], contato[100];
+    double peso, altura;
+    printf("\nOlá, seja bem-vindo ao programa da academia FiqueFit!\n");
     printf("\n (1) Adesão\
             \n (2) Acompanhamento\
             \n (3) Agendamento de aula experimental\
@@ -19,6 +19,8 @@ int main ()
     switch(opcao)
     {
         case 1: //ADESAO
+            printf("\n Qual o nome do cliente?\n");
+            scanf(" %99[^\n]", cliente);
             printf("\n a) Natação\
                     \n b) Musculação\
                     \n c) Treinamento Funcional\
@@ -180,14 +182,52 @@ int main ()
                     break; // BREAK CASO 'E'
                 //---------------------------------------------------------------------------------------------
             }
+            printf("\n Cliente: %s", cliente);
+            printf("\n %s ( %s )", categoria, horario);
+            printf("\n Pagamento %s", pagamento);
+            if(strcmp(pagamento, "Anual") == 0)
+            {
+                printf("\n 12x R$ %i \
+                        \n Total: %i \n", mensalidade, (12 * mensalidade)); 
+            }
+            else
+            {
+                printf("\n R$ %i \n", mensalidade);
+            }
+            break;
+        
+        case 2: //ACOMPANHAMENTO
+            printf("\n Informe a data de hoje: \n");
+            scanf(" %99[^\n]", data);
+            printf("\n Informe o seu peso em kg (ex. 76.00): \n");
+            scanf("%lf", &peso);
+            printf("\n Informe sua altura em metros (ex. 1.80): \n");
+            scanf("%lf", &altura);
+            printf("\n Informe sua meta: \n");
+            scanf(" %99[^\n]", meta);
+            printf("\n Olá %s!\
+                    \n Data de hoje: %s\
+                    \n Peso: %.2lfKg\
+                    \n Altura: %.2lfm\
+                    \n Sua meta: %s\n", cliente, data, peso, altura, meta);
+            break;
+        case 3: //AGENDAMENTO DE AULA EXPERIMENTAL
+            printf("\n Agendamento de aula experimental.\n");
+            printf("\n Insira um número de telefone para contato: \n");
+            scanf(" %99[^\n]", contato);
+            printf("\n Insira seu nome: \n");
+            scanf(" %99[^\n]", cliente);
+            printf("\n Qual a data da aula experimental? \n");
+            scanf(" %99[^\n]", data);
+            printf("\n E o horário? \n");
+            scanf(" %99[^\n]", horario);
+            printf("Olá %s!\
+                    Sua aula experimental foi marcada para o dia %s.\
+                    no horário de %sh.\n",cliente, data, horario);
             break;
         default:    //CASO NUMERO INVALIDO
             printf("\n Opção inválida. Reinicie a ferramenta.\n");
             return 0;
     }
-    printf("\n Cliente: %s", cliente);
-    printf("\n %s ( %s )", categoria, horario);
-    printf("\n Pagamento %s", pagamento);
-    printf("\n R$ %i \n", mensalidade);
     return 0;
 }
